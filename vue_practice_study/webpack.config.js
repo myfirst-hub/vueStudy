@@ -23,7 +23,8 @@ module.exports = {
     alias: {
       'vue': 'vue/dist/vue.js',
       "@": path.resolve(__dirname, './src'),
-      "styles": path.resolve(__dirname, './src/assets/styles')
+      "styles": path.resolve(__dirname, './src/assets/styles'),
+      "images": path.resolve(__dirname, './src/assets/images')
     }
   },
   devtool: 'eval-cheap-source-map',
