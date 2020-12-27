@@ -24,9 +24,9 @@ Watcher.prototype = {
   },
   addDep: function (dep) {
     if (!this.depIds.hasOwnProperty(dep.id)) {
-      // 建立dep到watcher
+      // 建立dep到watcher 用于更新watcher
       dep.addSub(this);
-      // 建立watcher到dep的关系
+      // 建立watcher到dep的关系 用于识别重复建立关系
       this.depIds[dep.id] = dep;
     }
   },

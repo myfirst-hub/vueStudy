@@ -16,7 +16,8 @@
 
 
 <!--
-1. [].slice.call(lis): 将伪数组转换为真数组
+1.伪数组：具有length属性；按索引方式存储数据；不具有数组的方法, 比如push(),pop()等
+Array.prototype.slice.call()，Array.from()，[].slice.call(lis): 将伪数组转换为真数组
 2. node.nodeType: 得到节点类型
 3. Object.defineProperty(obj, propertyName, {}): 给对象添加属性(指定描述符)
 4. Object.keys(obj): 得到对象自身可枚举属性组成的数组
@@ -56,21 +57,23 @@
   }
   //obj.fullName = 'A-B'
   Object.defineProperty(obj, 'fullName', {
-    // 属性描述符:
-
+// 属性描述符:
     // 数据描述符
-
+        // configurable: false, //是否可以重新define
+        // enumerable: true, // 是否可以枚举(for..in / keys())
+        // value: 'A-B', // 指定初始值
+        // writable: false // value是否可以修改
     //访问描述符
-    // 当读取对象此属性值时自动调用, 将函数返回的值作为属性值, this为obj
-    get () {
-      return this.firstName + "-" + this.lastName
-    },
-    // 当修改了对象的当前属性值时自动调用, 监视当前属性值的变化, 修改相关的属性, this为obj
-    set (value) {
-      const names = value.split('-')
-      this.firstName = names[0]
-      this.lastName = names[1]
-    }
+        // 当读取对象此属性值时自动调用, 将函数返回的值作为属性值, this为obj
+        get () {
+          return this.firstName + "-" + this.lastName
+        },
+        // 当修改了对象的当前属性值时自动调用, 监视当前属性值的变化, 修改相关的属性, this为obj
+        set (value) {
+          const names = value.split('-')
+          this.firstName = names[0]
+          this.lastName = names[1]
+        }
   })
 
   console.log(obj.fullName) // A-B
