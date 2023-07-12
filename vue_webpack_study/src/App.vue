@@ -1,11 +1,17 @@
 <template>
   <div>
-    <h1>TodoList</h1>
-    <input @keyup.enter="addTodo" type="text" v-model="content"></input>
-    <button @click="addTodo">添加</button>
-    <ul>
-      <li v-for="(item, index) of todoData" :key="index">{{item}}</li>
-    </ul>
+    <div>
+      <h1>TodoList</h1>
+      <input @keyup.enter="addTodo" type="text" v-model="content"></input>
+      <button @click="addTodo">添加</button>
+      <ul>
+        <li v-for="(item, index) of todoData" :key="index">{{item}}</li>
+      </ul>
+    </div>
+    <div>
+      <h1>全局基础组件checkbox</h1>
+      <base-checkbox v-model="lovingVue"></base-checkbox>
+    </div>
   </div>
 </template>
 
@@ -18,7 +24,8 @@
     data() {
       return {
         todoData: ['todo1', 'todo2', 'todo3'],
-        content: ''
+        content: '',
+        lovingVue: true,
       }
     },
     created() {
@@ -27,6 +34,7 @@
     },
     methods: {
       addTodo() {
+        console.log('lovingVue...................', this.lovingVue);
         if (this.content !== '') {
           this.todoData.push(this.content);
           this.content = '';
